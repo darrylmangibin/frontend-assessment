@@ -2,6 +2,7 @@ Introduction
 ---
 Thanks for taking the time to complete this frontend technical assessment. We will be focusing on software quality (scalability, readability, maintainability, etc.) and your eye for detail. You may include any libraries. Bonus points if SASS/LESS is used and jQuery is not used.
 
+
 Exercise 1
 ---
 Build a responsive page based on the designs.
