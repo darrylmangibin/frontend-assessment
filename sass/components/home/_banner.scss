@@ -7,6 +7,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 
+  @include breakpoint(md) {
+    background-image: url('http://via.placeholder.com/600x600');
+  }
+
   &:after {
     content: '';
     display: inline-block;
@@ -21,15 +25,40 @@
     z-index: 1;
     width: 100%;
     padding: 0 4rem;
+    
+
     & h1 {
       letter-spacing: 2px;
+      backface-visibility: hidden;
+      animation-name: moveInLeft;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-delay: 1s;
+      @include breakpoint(xs) {
+        font-size: 4rem;
+      }
     }
 
     & p {
       color: $primary-white;
       letter-spacing: 2px;
       font-size: 3.2rem;
+      font-weight: 300;
+      animation-name: moveInBottom;
+      animation-delay: 0.3;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-delay: 1s;
+      @include breakpoint(xs) {
+        font-size: 2.2rem;
+      }
     }
     @include v-center;
   }
+}
+
+.moveInBottom {
+  animation: moveInBottom;
+  transition: all 1s ease;
+  animation-duration: 1s;
 }
