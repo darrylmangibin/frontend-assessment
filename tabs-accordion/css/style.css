@@ -1,0 +1,118 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.6rem;
+  background: #303F9F;
+  color: #fff
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+.container {
+  position: relative;
+  max-width: 900px;
+  margin: 100px auto 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 35px;
+  font-size: 3.8rem;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs__sidebar {
+  flex-shrink: 0;
+  width: 125px;
+}
+
+.tabs__sidebar button {
+  padding: 15px 20px 15px 40px;
+  margin-bottom: 10px;
+  color: #303F9F;
+  background: #3F51B5;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  font-weight: 700;
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+  width: 100%;
+  border:none;
+  position: relative;
+  cursor: pointer;
+}
+
+.tabs__sidebar button:before {
+  position: absolute;
+  content: '';
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  top: 24px;
+  left: 15px;
+  background-color: #303F9F;
+  border-radius: 100%;
+  transition: 1s all cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateY(-50%);
+}
+
+.tabs__sidebar button:focus {
+  outline: 0;
+}
+
+.tabs__sidebar button.active {
+  color: #FBC02D;
+  padding: 15px 20px 15px 20px;
+}
+
+.tabs__sidebar button.active:before {
+    background-color: #FBC02D;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    border-radius: 0;
+    top: 50%;
+}
+
+.tabs__content {
+  padding-left: 40px;
+  display: none;
+  opacity: 0;
+  transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
+  /* transform: translateX(30px); */
+}
+
+.tabs__content p {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+.tabs__content ul {
+  padding-left: 20px
+}
+
+.tabs__content ul li {
+  list-style-type: circle;
+}
+
+.tabs__content.active {
+  display: block;
+}
