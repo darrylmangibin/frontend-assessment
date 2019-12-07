@@ -19,7 +19,8 @@ Exercise 2
 ###### Bonus points
 
 * Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `banana`.
-`b + a` returns 'ba'
+#### 
+`b + a` returns 'ba' 
 
 Submission
 ---
