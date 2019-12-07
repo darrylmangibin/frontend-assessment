@@ -5,7 +5,7 @@ window.addEventListener('scroll', (e) => {
   var scrollPosY = window.pageYOffset
   // console.log(features__container.scrollHeight)
   // console.log(scrollPosY)
-  if ((features__container.scrollHeight / 4) <= scrollPosY) {
+  if ((features__container.scrollHeight / 6) <= scrollPosY) {
     document.querySelectorAll('.card').forEach((c) => {
       c.classList.add('moveInBottom')
     })
