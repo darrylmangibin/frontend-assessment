@@ -17,9 +17,9 @@ Exercise 2
 1. npm run tabs
 
 ###### Bonus points
-* Improve the user experience with meaningful animations/transitions.
-* Design and styling.
+
 * Explain why the result of `('b' + 'a' + + 'a' + 'a').toLowerCase()` is `banana`.
+`b + a` returns 'ba'
 
 Submission
 ---
