@@ -26,6 +26,7 @@ li {
   position: relative;
   max-width: 900px;
   margin: 100px auto 0;
+  overflow: hidden;
 }
 
 .title {
@@ -93,11 +94,12 @@ li {
 }
 
 .tabs__content {
-  padding-left: 40px;
-  display: none;
+  padding: 0 40px;
+  /* display: none; */
   opacity: 0;
-  transition: 0.5s all cubic-bezier(0.075, 0.82, 0.165, 1);
-  /* transform: translateX(30px); */
+  transition: 2s all cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateX(30px);
+  margin-bottom: 20px;
 }
 
 .tabs__content p {
@@ -115,4 +117,14 @@ li {
 
 .tabs__content.active {
   display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* MEDIA */
+
+@media (max-width: 767px) {
+  .tabs__sidebar {
+    width: 100%;
+  }
 }

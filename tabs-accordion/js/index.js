@@ -1,49 +1,93 @@
 const getData = () => {
-  fetch('../../data.json').then(res => {
-    return res.json();
-  }).then(data => {
-    const tabs = document.getElementById('tabs');
-    const sidebar = document.querySelector('.tabs__sidebar');
-    data.map((d, i) => {
-      const button = document.createElement('button');
-      button.textContent = `Tab ${i + 1}`;
-      sidebar.appendChild(button);
-      const tabs__content = document.createElement('div');
-      tabs__content.classList.add('tabs__content');
-      const h2 = document.createElement('h2');
-      h2.textContent = d.title;
-      tabs__content.appendChild(h2);
-      const div = document.createElement('div');
-      div.innerHTML = d.content;
-      tabs__content.appendChild(div)
-      tabs.appendChild(tabs__content);
-
-      button.addEventListener('click', (e) => {
-        const tabsContentChildren = document.querySelectorAll('.tabs__content');
-        const buttonChildren = document.querySelectorAll('.tabs__sidebar button');
-        buttonChildren.forEach((btn, index) => {
-          btn.classList.remove('active');
-          if (index === i) {
-            btn.classList.add('active')
-          }
-        })
-        tabsContentChildren.forEach((tab, index) => {
-          tab.style.opacity = 0;
-          tab.style.transform = 'translateX(40px)'
-          tab.classList.remove('active');
-          if(index === i) {
-            tab.classList.add('active')
-            setTimeout(() => {
-              tab.style.opacity = 1;
-              tab.style.transform = 'translateX(0)'
-            }, 100);
-          }
-        })
-      })
-      const buttons = button.parentElement.children;
-      buttons[0].click();
+  fetch('data.json')
+    .then(res => res.json())
+    .then(data => {
+      app(data);
     })
-  })
 }
 
 getData();
+
+const tabs = document.querySelector('#tabs');
+
+const render = (data) => {
+  tabs.innerHTML = ''
+  const sidebar = document.createElement('div');
+  sidebar.classList.add('tabs__sidebar');
+  tabs.appendChild(sidebar);
+
+  data.forEach((d, i) => {
+    sidebar.appendChild(generateButton(d, i))
+  })
+  const x = document.querySelectorAll('.tabs__sidebar button');
+  x[0].click();
+}
+
+const generateButton = (d, i) => {
+  const buttons = document.createElement('button');
+  buttons.textContent = `Tab ${i + 1}`;
+  buttons.addEventListener('click', (e) => {
+    if(document.querySelector('.tabs__content')) {
+      document.querySelector('.tabs__content').remove()
+    }
+    const sideBarBtns = document.querySelectorAll('.tabs__sidebar button');
+    sideBarBtns.forEach(btn => {
+      if(btn.classList.contains('active')) {
+        btn.classList.remove('active')
+      }
+    })
+    e.target.classList.add('active')
+    generateContent(d, buttons)
+  })
+  return buttons
+};
+
+const generateContent = (data, btn) => {
+  const div = document.createElement('div');
+  div.classList.add('tabs__content');
+  setTimeout(() => {
+    div.classList.add('active');
+  },100);
+  const h3 = document.createElement('h3');
+  h3.textContent = data.title;
+  
+  if(window.innerWidth <= 767) {
+    div.appendChild(h3)
+    div.innerHTML += data.content;
+    btn.parentNode.insertBefore(div, btn.nextSibling)
+  } else {
+    div.appendChild(h3)
+    div.innerHTML += data.content;
+    tabs.appendChild(div)
+  }
+}
+
+window.addEventListener('resize', () => {
+  const sideBar = document.querySelector('.tabs__sidebar');
+  const tabs = document.querySelector('#tabs')
+  if(window.innerWidth > 767) {
+    sideBar.childNodes.forEach(list => {
+      if (list.classList.contains('tabs__content')) {
+        list.remove()
+      }
+    })
+  } else {
+    tabs.childNodes.forEach(list => {
+      if (list.classList.contains('tabs__content')) {
+        list.remove()
+      }
+    })
+  }
+  const buttons = document.querySelectorAll('.tabs__sidebar button');
+  buttons.forEach(btn => {
+    if(btn.classList.contains('active')) {
+      btn.click()
+    }
+  })
+})
+
+const app = (data) => {
+  render(data);
+}
+
+// app();
